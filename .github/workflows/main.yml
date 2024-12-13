@@ -1,0 +1,17 @@
+name: Tests Workflow
+
+on: [push]
+
+jobs:
+  build:
+    name: Autograding
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare to tests
+        run: |
+          npm i
+          npx react-scripts start &
+      - name: Tests
+        run: |
+          CI=true npx react-scripts test
